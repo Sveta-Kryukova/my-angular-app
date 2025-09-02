@@ -9,6 +9,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.scss',
 })
 export class AppComponent {
-  title = 'Angular App'; 
-  
+  title = 'Angular App';
 }
