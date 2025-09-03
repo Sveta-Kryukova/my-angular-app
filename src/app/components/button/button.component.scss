@@ -1,0 +1,74 @@
+@import '../../../scss/main';
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: $font-family-primary;
+  font-weight: $font-weight-bold;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0%;
+  color: $color-text-primary;
+  margin: 0 auto;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+
+  @include tablet-up {
+    font-size: 15px;
+  }
+
+  @include desktop-up {
+    font-size: $font-size-base;
+    margin: 0;
+  }
+
+  &--primary {
+    color: $color-text-primary;
+  }
+
+  &--secondary {
+    color: $color-text-secondary;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--icon-left {
+    flex-direction: row;
+  }
+
+  &--icon-right {
+    flex-direction: row-reverse;
+  }
+
+  &:hover:not(.button--disabled) {
+    opacity: 0.8;
+  }
+}
+
+.button__icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+
+  @include tablet-up {
+    width: 15px;
+    height: 15px;
+  }
+
+  @include desktop-up {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.button__text {
+  flex: 1;
+}

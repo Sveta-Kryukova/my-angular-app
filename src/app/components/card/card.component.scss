@@ -57,7 +57,7 @@
 .card-title {
   font-family: $font-family-primary;
   font-weight: $font-weight-regular;
-  font-size: $font-size-xl;
+  font-size: $font-size-base;
   line-height: 100%;
   letter-spacing: 0%;
   color: $color-text-primary;
@@ -73,30 +73,4 @@
   color: $color-text-primary;
   margin: 0 0 $spacing-md 0;
   flex: 1;
-}
-
-.read-more-btn {
-  display: flex;
-  align-items: center;
-  gap: $spacing-xs;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: $font-family-primary;
-  font-weight: $font-weight-bold;
-  font-size: $font-size-base;
-  line-height: 150%;
-  letter-spacing: 0%;
-  color: $color-text-primary;
-  margin-top: auto;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
-.arrow-icon {
-  width: 16px;
-  height: 16px;
 }

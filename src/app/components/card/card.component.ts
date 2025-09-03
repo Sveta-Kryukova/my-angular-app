@@ -1,10 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss',
 })
@@ -24,8 +25,7 @@ export class CardComponent {
     this.cardClick.emit(this.articleId);
   }
 
-  onReadMoreClick(event: Event): void {
-    event.stopPropagation();
+  onReadMoreClick(): void {
     this.cardClick.emit(this.articleId);
   }
 }

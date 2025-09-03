@@ -8,9 +8,14 @@
     <div class="article-text" [innerHTML]="articleData.content"></div>
   </div>
   <div class="back-link">
-    <button (click)="goBack()" class="back-button">
-      <img src="assets/icons/arrow-left-icon.svg" alt="Arrow left" class="arrow-left-icon" />
-      <span>Back to homepage</span>
-    </button>
+    <app-button
+      text="Back to homepage"
+      iconUrl="assets/icons/arrow-left-icon.svg"
+      iconAlt="Arrow left"
+      variant="primary"
+      iconPosition="left"
+      (buttonClick)="goBack()"
+    >
+    </app-button>
   </div>
 </div>

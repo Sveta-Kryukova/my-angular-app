@@ -9,8 +9,8 @@
   </div>
 
   <div class="cards-grid">
+    @for (article of articles; track article.id) {
     <app-card
-      *ngFor="let article of articles"
       [title]="article.title"
       [content]="article.content"
       [imageUrl]="article.imageUrl"
@@ -19,5 +19,6 @@
       (cardClick)="onCardClick($event)"
     >
     </app-card>
+    }
   </div>
 </div>
