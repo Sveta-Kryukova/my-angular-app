@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" (click)="onCardClick()">
   <div class="card-image">
     <img [src]="displayImageUrl" [alt]="title" />
   </div>
@@ -9,7 +9,7 @@
     </div>
     <h3 class="card-title">{{ title }}</h3>
     <p class="card-description">{{ content }}</p>
-    <button class="read-more-btn">
+    <button class="read-more-btn" (click)="onReadMoreClick($event)">
       <span>Read more</span>
       <img src="assets/icons/arrow-right-icon.svg" alt="Arrow" class="arrow-icon" />
     </button>

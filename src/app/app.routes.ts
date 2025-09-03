@@ -4,6 +4,6 @@ import { ArticlePageComponent } from './components/article-page/article-page.com
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent },
-  { path: 'article', component: ArticlePageComponent },
-  { path: '**', redirectTo: '' }
+  { path: 'article/:id', component: ArticlePageComponent },
+  { path: '**', redirectTo: '' },
 ];

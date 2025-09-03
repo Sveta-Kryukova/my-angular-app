@@ -1,3 +1,16 @@
+<div class="article-page">
+  <div class="article-hero">
+    <img [src]="displayImageUrl" [alt]="articleData.title" class="hero-image" />
+  </div>
 
-
-
+  <div class="article-content">
+    <h1 class="article-title">{{ articleData.title }}</h1>
+    <div class="article-text" [innerHTML]="articleData.content"></div>
+  </div>
+  <div class="back-link">
+    <button (click)="goBack()" class="back-button">
+      <img src="assets/icons/arrow-left-icon.svg" alt="Arrow left" class="arrow-left-icon" />
+      <span>Back to homepage</span>
+    </button>
+  </div>
+</div>
