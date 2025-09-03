@@ -1,0 +1,72 @@
+@import '../../../scss/main';
+
+.search-container {
+  position: absolute;
+  width: 600px;
+  height: 80px;
+  top: 50px;
+  left: 75px;
+  gap: 10px;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.search-label {
+  font-family: $font-family-primary;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: $color-text-primary;
+  margin-bottom: 10px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  height: 100%;
+  padding: 15px 20px 15px 60px;
+  border: 1px solid $color-border-light;
+  box-shadow: 0px 8px 24px 0px $color-shadow-light;
+  border-radius: 4px;
+  font-family: $font-family-primary;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0%;
+  background-color: $color-background-white;
+  outline: none;
+
+  &::placeholder {
+    color: $color-text-secondary;
+    font-family: $font-family-primary;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0%;
+  }
+
+  &:focus {
+    border-color: $color-border-light;
+  }
+}
