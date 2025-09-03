@@ -1,6 +1,12 @@
 @import '../../../scss/main';
 
 .homepage {
-  position: relative;
-  padding: 50px 75px 63px 75px;
+  padding: 20px;
+}
+
+.cards-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
 }

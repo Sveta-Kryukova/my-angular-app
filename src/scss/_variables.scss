@@ -9,6 +9,11 @@ $font-family-primary: 'Montserrat', sans-serif;
 $font-size-base: 16px;
 $font-size-lg: 18px;
 $font-size-xl: 24px;
+$font-size-sm: 14px;
+
+// Font weights
+$font-weight-regular: 400;
+$font-weight-bold: 700;
 
 // Colors
 $color-text-primary: #363636;
@@ -16,6 +21,19 @@ $color-text-secondary: #575757;
 $color-border-light: #eaeaea;
 $color-background-white: white;
 $color-shadow-light: #0000000d;
+
+// Card dimensions
+$card-width: 400px;
+$card-height: 530px;
+$card-image-width: 400px;
+$card-image-height: 217px;
+$card-border-radius: 5px;
+
+// Spacing
+$spacing-xs: 8px;
+$spacing-sm: 15px;
+$spacing-md: 20px;
+$spacing-lg: 25px;
 
 // Breakpoints (Mobile First)
 $breakpoint-mobile: 0;

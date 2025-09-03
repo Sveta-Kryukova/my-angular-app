@@ -1,3 +1,28 @@
 <div class="homepage">
   <app-search></app-search>
+
+  <div class="cards-container">
+    <app-card
+      title="Sample Article Title"
+      content="This is a sample description of the article content that will be displayed in the card component."
+      imageUrl="https://via.placeholder.com/400x217"
+      date="June 29th, 2021"
+    >
+    </app-card>
+
+    <app-card
+      title="Article Without Image"
+      content="This article doesn't have a custom image, so it will show the default SVG placeholder."
+      date="July 15th, 2021"
+    >
+    </app-card>
+
+    <app-card
+      title="Another Article"
+      content="Another sample article description to demonstrate the card component functionality."
+      imageUrl="https://via.placeholder.com/400x217/ff6b6b/ffffff?text=Custom+Image"
+      date="August 3rd, 2021"
+    >
+    </app-card>
+  </div>
 </div>
