@@ -1,12 +1,75 @@
 @import '../../../scss/main';
 
 .homepage {
+  background-color: $color-background-light;
+  min-height: 100vh;
   padding: 20px;
+  padding-bottom: 40px;
+
+  @include tablet-up {
+    padding: 30px;
+    padding-bottom: 50px;
+  }
+
+  @include desktop-up {
+    padding: 50px 75px 63px;
+    padding-bottom: 60px;
+  }
 }
 
-.cards-container {
-  display: flex;
+.results-section {
+  margin-bottom: 0;
+
+  @include tablet-up {
+    margin-top: 50px;
+  }
+
+  @include desktop-up {
+    margin-top: 60px;
+  }
+}
+
+.results-container {
+  max-width: $results-width;
+  margin: 0 auto;
+
+  @include desktop-up {
+    width: 100%;
+  }
+}
+
+.results-title {
+  font-family: $font-family-primary;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: $color-text-primary;
+  margin: 0 0 0 0;
+}
+
+.results-divider {
+  width: 100%;
+  height: $results-border-height;
+  border: 1px solid $color-border-light;
+  margin-top: 5px;
+  margin-bottom: 45px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 40px;
+  max-width: $results-width;
+  margin: 0 auto;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  @include desktop-up {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
 }

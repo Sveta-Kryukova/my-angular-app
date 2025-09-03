@@ -1,30 +1,21 @@
 <div class="homepage">
   <app-search></app-search>
 
-  <div class="cards-container">
-    <app-card
-      title="The 2020 World's Most Valuable Brands"
-      content="This is a sample description of the article content that will be displayed in the card component."
-      date="June 29th, 2021"
-      articleId="1"
-      (cardClick)="onCardClick($event)"
-    >
-    </app-card>
+  <div class="results-section">
+    <div class="results-container">
+      <h2 class="results-title">Results: {{ resultsCount }}</h2>
+      <div class="results-divider"></div>
+    </div>
+  </div>
 
+  <div class="cards-grid">
     <app-card
-      title="Article Without Image"
-      content="This article doesn't have a custom image, so it will show the default SVG placeholder."
-      date="July 15th, 2021"
-      articleId="2"
-      (cardClick)="onCardClick($event)"
-    >
-    </app-card>
-
-    <app-card
-      title="Another Article"
-      content="Another sample article description to demonstrate the card component functionality."
-      date="August 3rd, 2021"
-      articleId="3"
+      *ngFor="let article of articles"
+      [title]="article.title"
+      [content]="article.content"
+      [imageUrl]="article.imageUrl"
+      [date]="article.date"
+      [articleId]="article.id"
       (cardClick)="onCardClick($event)"
     >
     </app-card>

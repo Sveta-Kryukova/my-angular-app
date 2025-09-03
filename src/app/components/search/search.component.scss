@@ -1,11 +1,9 @@
 @import '../../../scss/main';
 
 .search-container {
-  position: absolute;
+  position: relative;
   width: 600px;
   height: 80px;
-  top: 50px;
-  left: 75px;
   gap: 10px;
   opacity: 1;
   display: flex;
