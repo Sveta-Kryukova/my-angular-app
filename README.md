@@ -25,6 +25,12 @@ A modern Angular application for browsing spaceflight news with search functiona
 - SCSS - CSS preprocessor with variables and mixins
 - Spaceflight News API - Data source
 
+## Live Demo
+
+[View Live Demo on GitHub Pages](https://sveta-kryukova.github.io/my-angular-app/)
+
+[View Live Demo on Netlify](https://your-app-name.netlify.app/)
+
 ## Installation and Setup
 
 ### Prerequisites
@@ -58,12 +64,14 @@ The build artifacts will be stored in the `dist/` directory.
 
 ## Available Scripts
 
-| Command         | Description                                       |
-| --------------- | ------------------------------------------------- |
-| `npm start`     | Start development server on http://localhost:4200 |
-| `npm run build` | Build project for production                      |
-| `npm run watch` | Build in watch mode                               |
-| `npm test`      | Run unit tests                                    |
+| Command                 | Description                                       |
+| ----------------------- | ------------------------------------------------- |
+| `npm start`             | Start development server on http://localhost:4200 |
+| `npm run build`         | Build project for production                      |
+| `npm run watch`         | Build in watch mode                               |
+| `npm test`              | Run unit tests                                    |
+| `npm run deploy`        | Deploy to GitHub Pages                            |
+| `npm run build:netlify` | Build for Netlify deployment                      |
 
 ## Project Structure
 
@@ -212,12 +220,47 @@ The project follows Angular best practices:
 
 ## Deployment
 
-### Manual Deployment
+### GitHub Pages
+
+The project is automatically deployed to GitHub Pages using angular-cli-ghpages.
+
+#### Manual Deployment
 
 ```bash
 npm run deploy
 ```
 
-### Automatic Deployment
+#### Automatic Deployment
 
 The project is set up for automatic deployment via GitHub Actions on every push to the main branch.
+
+### Netlify
+
+The project is also configured for deployment on Netlify with automatic builds and deployments.
+
+#### Netlify Configuration
+
+The project includes a `netlify.toml` file with the following settings:
+
+```toml
+[build]
+  publish = "dist/my-angular-app/browser"
+  command = "npm run build:netlify"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+#### Deploy to Netlify
+
+1. Connect your GitHub repository to Netlify
+2. Set build command to: `npm run build:netlify`
+3. Set publish directory to: `dist/my-angular-app/browser`
+4. Deploy automatically on every push to main branch
+
+## Author
+
+Svitlana Kryukova - [GitHub](https://github.com/Sveta-Kryukova)
+
