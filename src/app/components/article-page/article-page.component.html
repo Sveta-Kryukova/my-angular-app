@@ -1,21 +1,31 @@
 <div class="article-page">
+  @if (state$ | async; as state) { @if (state.isLoading) {
+  <div class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Loading article...</p>
+  </div>
+  } @else if (state.article) {
   <div class="article-hero">
-    <img [src]="displayImageUrl" [alt]="articleData.title" class="hero-image" />
+    <img
+      [src]="state.article.imageUrl || DEFAULT_IMAGES.ARTICLE"
+      [alt]="state.article.title"
+      class="hero-image"
+      (error)="onImageError($event)"
+    />
   </div>
 
   <div class="article-content">
-    <h1 class="article-title">{{ articleData.title }}</h1>
-    <div class="article-text" [innerHTML]="articleData.content"></div>
+    <h1 class="article-title">{{ state.article.title }}</h1>
+    <div class="article-text" [innerHTML]="formatArticleContent(state.article.summary)"></div>
   </div>
+
+  } }
   <div class="back-link">
     <app-button
-      text="Back to homepage"
-      iconUrl="assets/icons/arrow-left-icon.svg"
-      iconAlt="Arrow left"
-      variant="primary"
-      iconPosition="left"
-      (buttonClick)="goBack()"
-    >
-    </app-button>
+      text="Back to Articles"
+      variant="outline"
+      [icon]="DEFAULT_IMAGES.ARROW_LEFT_ICON"
+      (clicked)="onBackClick()"
+    ></app-button>
   </div>
 </div>

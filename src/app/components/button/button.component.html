@@ -1,6 +1,10 @@
-<button [class]="buttonClasses" [disabled]="disabled" (click)="onButtonClick()">
-  @if (iconUrl) {
-  <img [src]="iconUrl" [alt]="iconAlt" class="button__icon" />
+<button
+  [class]="'button button--' + variant + ' button--icon-' + iconPosition"
+  [disabled]="disabled"
+  (click)="onButtonClick()"
+>
+  @if (icon) {
+  <img [src]="icon" [alt]="text" class="button__icon" />
   }
   <span class="button__text">{{ text }}</span>
 </button>

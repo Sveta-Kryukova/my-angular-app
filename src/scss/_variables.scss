@@ -17,13 +17,21 @@ $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 // Colors
+$color-primary: #007bff;
+$color-primary-dark: #0056b3;
 $color-text-primary: #363636;
 $color-text-secondary: #575757;
 $color-text-black: #000000;
 $color-border-light: #eaeaea;
 $color-background-white: white;
 $color-background-light: #f5f5f5;
-$color-shadow-light: #0000000d;
+$color-background-gray: #f8f9fa;
+$color-shadow-light: rgba(0, 0, 0, 0.1);
+$color-shadow-dark: rgba(0, 0, 0, 0.2);
+$color-highlight: #ffeb3b;
+
+// Border colors
+$color-border-accent: #007bff;
 
 // Card dimensions
 $card-width: 400px;
@@ -52,6 +60,9 @@ $spacing-lg: 25px;
 $spacing-xl: 35px;
 $spacing-xxl: 50px;
 $spacing-xxxl: 75px;
+
+// Border radius
+$border-radius-sm: 5px;
 
 // Breakpoints (Mobile First)
 $breakpoint-mobile: 0;

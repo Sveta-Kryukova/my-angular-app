@@ -1,9 +1,22 @@
 import { Routes } from '@angular/router';
-import { HomepageComponent } from './components/homepage/homepage.component';
-import { ArticlePageComponent } from './components/article-page/article-page.component';
+import { ArticleGuard } from './guards/article.guard';
 
 export const routes: Routes = [
-  { path: '', component: HomepageComponent },
-  { path: 'article/:id', component: ArticlePageComponent },
-  { path: '**', redirectTo: '' },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./components/homepage/homepage.component').then((m) => m.HomepageComponent),
+  },
+  {
+    path: 'article/:id',
+    loadComponent: () =>
+      import('./components/article-page/article-page.component').then(
+        (m) => m.ArticlePageComponent
+      ),
+    canActivate: [ArticleGuard],
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];

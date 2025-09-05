@@ -1,22 +1,22 @@
 <div class="card" (click)="onCardClick()">
   <div class="card-image">
-    <img [src]="displayImageUrl" [alt]="title" />
+    <img [src]="displayImageUrl" [alt]="title" (error)="onImageError($event)" />
   </div>
   <div class="card-content">
-    <div class="card-date">
-      <img src="assets/icons/calendar-icon.svg" alt="Calendar" class="calendar-icon" />
-      <span class="date-text">{{ date }}</span>
-    </div>
-    <h3 class="card-title">{{ title }}</h3>
-    <p class="card-description">{{ content }}</p>
-    <app-button
-      text="Read more"
-      iconUrl="assets/icons/arrow-right-icon.svg"
-      iconAlt="Arrow"
-      variant="primary"
-      iconPosition="right"
-      (buttonClick)="onReadMoreClick()"
+    <span class="card-date">
+      <img class="card-date-icon" [src]="DEFAULT_IMAGES.CALENDAR_ICON" alt="Clock" />
+      {{ date }}</span
     >
-    </app-button>
+    <h3 class="card-title" [innerHTML]="highlightedTitle"></h3>
+    <p class="card-description" [innerHTML]="highlightedContent"></p>
+    <div class="card-footer">
+      <app-button
+        text="Read more"
+        variant="outline"
+        [icon]="DEFAULT_IMAGES.ARROW_RIGHT_ICON"
+        (clicked)="onReadMoreClick()"
+        iconPosition="right"
+      ></app-button>
+    </div>
   </div>
 </div>

@@ -41,19 +41,19 @@
   border: 1px solid $color-border-light;
   box-shadow: 0px 8px 24px 0px $color-shadow-light;
   border-radius: $card-border-radius;
-  padding: 20px;
+  padding: $spacing-md;
   z-index: 10;
   left: 50%;
   transform: translateX(-50%);
-  margin-bottom: 20px;
+  margin-bottom: $spacing-md;
   box-sizing: border-box;
 
   @include tablet-up {
     margin-top: -100px;
     width: calc(100% - 40px);
     max-width: calc(100vw - 40px);
-    padding: 25px 30px;
-    margin-bottom: 25px;
+    padding: $spacing-lg $spacing-xxl;
+    margin-bottom: $spacing-lg;
   }
 
   @include desktop-up {
@@ -72,13 +72,13 @@
   line-height: 100%;
   letter-spacing: 0%;
   color: $color-text-primary;
-  margin: 0 0 20px 0;
+  margin: 0 0 $spacing-md 0;
   text-align: center;
   word-wrap: break-word;
 
   @include tablet-up {
     font-size: 20px;
-    margin-bottom: 25px;
+    margin-bottom: $spacing-lg;
   }
 
   @include desktop-up {
@@ -88,30 +88,23 @@
 }
 
 .article-text {
-  font-family: $font-family-primary;
-  font-weight: $font-weight-regular;
-  font-size: 14px;
-  line-height: 150%;
-  letter-spacing: 0%;
-  color: $color-text-black;
-  white-space: pre-line;
-  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: $color-text-primary;
+  margin-bottom: 2rem;
+
+  white-space: pre-wrap;
   word-wrap: break-word;
-  overflow-wrap: break-word;
 
-  @include tablet-up {
-    font-size: 16px;
-  }
-
-  @include desktop-up {
-    font-size: $font-size-lg;
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
   }
 }
 
 .back-link {
   position: relative;
   z-index: 20;
-  margin-bottom: 20px;
+  margin-bottom: $spacing-md;
   text-align: center;
   width: 100%;
   max-width: calc(100vw - 40px);
@@ -119,7 +112,7 @@
   margin-right: auto;
 
   @include tablet-up {
-    margin-bottom: 30px;
+    margin-bottom: $spacing-xxl;
     max-width: calc(100vw - 60px);
   }
 
@@ -130,5 +123,11 @@
     max-width: none;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+::ng-deep .mat-mdc-progress-spinner {
+  circle {
+    stroke: $color-primary !important;
   }
 }

@@ -1,24 +1,38 @@
 <div class="homepage">
   <app-search></app-search>
 
+  @if (isInitialLoading) {
+  <div class="loading-indicator">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Loading articles...</p>
+  </div>
+  } @else {
   <div class="results-section">
     <div class="results-container">
-      <h2 class="results-title">Results: {{ resultsCount }}</h2>
+      <h2 class="results-title">Results: {{ resultsCount$ | async }}</h2>
       <div class="results-divider"></div>
     </div>
   </div>
 
   <div class="cards-grid">
-    @for (article of articles; track article.id) {
+    @for (article of filteredArticles$ | async; track $index) {
     <app-card
       [title]="article.title"
-      [content]="article.content"
+      [content]="article.summary"
       [imageUrl]="article.imageUrl"
-      [date]="article.date"
+      [date]="formatDate(article.publishedAt)"
       [articleId]="article.id"
+      [searchTerm]="currentSearchTerm$ | async"
       (cardClick)="onCardClick($event)"
     >
     </app-card>
     }
   </div>
+
+  @if (isLoading) {
+  <div class="loading-more">
+    <mat-spinner diameter="30"></mat-spinner>
+    <p>Loading more articles...</p>
+  </div>
+  } }
 </div>

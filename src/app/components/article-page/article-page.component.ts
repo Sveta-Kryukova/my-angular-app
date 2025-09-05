@@ -1,50 +1,117 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Observable, Subject, takeUntil, switchMap, of, map, catchError } from 'rxjs';
+import { Article, ArticleState } from '../../interfaces/article.interface';
+import { SpaceflightNewsService } from '../../services/spaceflight-news.service';
+import { ArticleStateService } from '../../services/article-state.service';
+import { formatDate } from '../../helpers/date.helpers';
 import { ButtonComponent } from '../button/button.component';
+import { DEFAULT_IMAGES } from '../../constants/app.constants';
 
 @Component({
   selector: 'app-article-page',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, MatProgressSpinnerModule, ButtonComponent],
   templateUrl: './article-page.component.html',
   styleUrl: './article-page.component.scss',
 })
-export class ArticlePageComponent implements OnInit {
-  articleId: string = '';
-  articleData: any = {};
+export class ArticlePageComponent implements OnInit, OnDestroy {
+  state$: Observable<ArticleState>;
+  private destroy$ = new Subject<void>();
+    
+  readonly DEFAULT_IMAGES = DEFAULT_IMAGES;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private spaceflightNewsService: SpaceflightNewsService,
+    private articleStateService: ArticleStateService
+  ) {
+    this.state$ = this.articleStateService.state$;
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.articleId = params['id'];
-      this.loadArticleData();
-    });
+    this.route.params
+      .pipe(
+        switchMap((params) => {
+          const articleId = params['id'];
+          if (!articleId) {
+            this.router.navigate(['/']);
+            return of(null);
+          }
+          return this.loadArticle(articleId);
+        }),
+        takeUntil(this.destroy$)
+      )
+      .subscribe();
   }
 
-  loadArticleData(): void {
-    // Здесь можно загружать данные статьи по ID
-    // Пока используем моковые данные
-    this.articleData = {
-      id: this.articleId,
-      title: "The 2020 World's Most Valuable Brands",
-      imageUrl: '', // Пустой imageUrl для демонстрации дефолтного изображения
-      content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum ornare convallis non etiam tincidunt tincidunt. Non dolor vel purus id. Blandit habitasse volutpat id dolor pretium, sem iaculis. Faucibus commodo mauris enim, turpis blandit. Porttitor facilisi viverra mi lacus lacinia accumsan. Pellentesque gravida ligula bibendum aliquet nulla massa elit. Ac faucibus donec sit morbi pharetra urna. Vel facilisis amet placerat ultrices lobortis proin nulla. Molestie tellus sed pellentesque tortor vitae eu cras nisl. Sem facilisi amet vitae ultrices nullam tellus. Pellentesque eget iaculis morbi at quis eget lacus, aliquam etiam. Neque ipsum, placerat vel convallis nulla orci, nunc etiam. Elementum risus facilisi mauris diam amet et sed.
-
-At aliquet id amet, viverra a magna lorem urna. Nibh scelerisque quam quam massa amet, sollicitudin vel non. Gravida laoreet neque tincidunt eu egestas massa vitae nibh. Nec ullamcorper amet tortor, velit. Dictum pellentesque dolor sit duis sed nibh. Euismod rutrum pellentesque semper mattis aliquet ornare. Cursus maecenas massa, arcu ac adipiscing odio facilisis ac eu. In eget ipsum, sed ultrices tempor consequat, elementum cras porta. Sagittis etiam dictumst at duis praesent a. Malesuada odio amet aenean diam. Tincidunt lorem faucibus neque aliquet lobortis feugiat sed aliquam pulvinar. Praesent aliquet ut tempus feugiat placerat quis duis mauris nibh. Eu ullamcorper id feugiat sit risus turpis mi. Tristique posuere sed convallis magna eu vulputate. Cum sit in hac felis blandit. Cursus eu porta lectus mollis nisi, consectetur ac. Ornare vitae lectus iaculis nibh ac et. Adipiscing amet in parturient etiam fames. Facilisi id eu sem in elementum. Lacus, ipsum morbi vel purus ut arcu laoreet id eu.
-
-Libero, tincidunt aliquet parturient dolor sapien faucibus nunc. In ipsum suscipit nec pharetra non vitae sagittis aenean sit. Consequat integer sit netus pellentesque scelerisque ut. Elit augue dui viverra facilisi varius. Volutpat iaculis eu ipsum ut. Dui, ut viverra ut amet magna in in varius. Aliquet penatibus pretium feugiat lobortis. Mauris nunc, eu non massa donec sit duis. Libero nascetur mauris, ac in aliquet cras duis donec. Sit porttitor sociis aliquam aliquet odio arcu a viverra. Proin convallis bibendum venenatis non orci id proin vitae. Faucibus eleifend fermentum sit dictum sagittis fermentum. At id nisi, aliquet ut sagittis proin enim. Eget in aenean mi a elit viverra amet urna, diam. Cursus id viverra amet adipiscing. Pretium, amet amet mi mauris urna, maecenas. Risus ut sit quis donec. Lacinia elementum, amet gravida convallis elementum, metus cras. Adipiscing suspendisse etiam tellus tellus arcu. At accumsan rhoncus, fringilla ut scelerisque consectetur.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum ornare convallis non etiam tincidunt tincidunt. Non dolor vel purus id. Blandit habitasse volutpat id dolor pretium, sem iaculis. Faucibus commodo mauris enim, turpis blandit. Porttitor facilisi viverra mi lacus lacinia accumsan. Pellentesque gravida ligula bibendum aliquet nulla massa elit. Ac faucibus donec sit morbi pharetra urna. Vel facilisis amet placerat ultrices lobortis proin nulla.`,
-    };
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
-  get displayImageUrl(): string {
-    return this.articleData.imageUrl || 'assets/images/default-image.svg';
+  private loadArticle(articleId: string): Observable<Article | null> {
+    this.articleStateService.setLoading(true);
+
+    return this.spaceflightNewsService.getArticleById(articleId).pipe(
+      map((article) => {
+        if (article) {
+          this.articleStateService.setArticle(article);
+          this.articleStateService.setLoading(false);
+          return article;
+        } else {
+          this.articleStateService.setLoading(false);
+          this.router.navigate(['/']);
+          return null;
+        }
+      }),
+      catchError((error) => {
+        console.error('Error loading article:', error);
+        this.articleStateService.setLoading(false);
+        this.router.navigate(['/']);
+        return of(null);
+      })
+    );
   }
 
-  goBack(): void {
+  onBackClick(): void {
     this.router.navigate(['/']);
+  }
+
+  formatDate(dateString: string): string {
+    return formatDate(dateString);
+  }
+
+  formatArticleContent(content: string): string {
+    if (!content) return '';
+
+    const cleanContent = this.cleanHtmlContent(content);
+
+    if (!cleanContent.includes('<')) {
+      return cleanContent
+        .split('\n')
+        .filter((paragraph) => paragraph.trim())
+        .map((paragraph) => `<p>${paragraph.trim()}</p>`)
+        .join('');
+    }
+
+    return cleanContent;
+  }
+
+  private cleanHtmlContent(html: string): string {
+    return html
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+      .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+      .replace(/on\w+="[^"]*"/gi, '');
+  }
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    if (img.src !== DEFAULT_IMAGES.ARTICLE) {
+      img.src = DEFAULT_IMAGES.ARTICLE;
+    }
   }
 }

@@ -1,7 +1,7 @@
 @import '../../../scss/main';
 
 .homepage {
-  background-color: $color-background-light;
+  background-color: $color-background-white;
   min-height: 100vh;
   padding: 20px;
   padding-bottom: 40px;
@@ -69,5 +69,28 @@
   @include desktop-up {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
+  }
+}
+
+.loading-indicator,
+.loading-more {
+  @include flex-center;
+  @include flex-column;
+  padding: 40px 20px;
+  max-width: $results-width;
+  margin: 0 auto;
+
+  p {
+    font-family: $font-family-primary;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-base;
+    color: $color-text-secondary;
+    margin-top: 16px;
+  }
+}
+
+::ng-deep .mat-mdc-progress-spinner {
+  circle {
+    stroke: $color-primary !important;
   }
 }

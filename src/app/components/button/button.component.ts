@@ -10,22 +10,16 @@ import { CommonModule } from '@angular/common';
 })
 export class ButtonComponent {
   @Input() text: string = '';
-  @Input() iconUrl: string = '';
-  @Input() iconAlt: string = '';
-  @Input() variant: 'primary' | 'secondary' = 'primary';
+  @Input() variant: 'primary' | 'secondary' | 'outline' = 'primary';
+  @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() disabled: boolean = false;
-  @Input() iconPosition: 'left' | 'right' = 'right';
-  @Output() buttonClick = new EventEmitter<void>();
-
-  get buttonClasses(): string {
-    return `button button--${this.variant}${
-      this.disabled ? ' button--disabled' : ''
-    } button--icon-${this.iconPosition}`;
-  }
+  @Input() icon: string = '';
+  @Input() iconPosition: 'left' | 'right' = 'left';
+  @Output() clicked = new EventEmitter<void>();
 
   onButtonClick(): void {
     if (!this.disabled) {
-      this.buttonClick.emit();
+      this.clicked.emit();
     }
   }
 }
