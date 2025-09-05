@@ -1,10 +1,11 @@
-@import '../../../scss/main';
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
 
 .card {
   background: $color-background-white;
   border: 1px solid $color-border-light;
   border-radius: $card-border-radius;
-  box-shadow: 0px 8px 24px 0px $color-shadow-light;
+  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.1);
   width: $card-width;
   height: $card-height;
   display: flex;
@@ -15,7 +16,7 @@
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 12px 32px 0px $color-shadow-dark;
   }
 }
 

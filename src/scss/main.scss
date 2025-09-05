@@ -3,10 +3,10 @@
 // ===========================================
 
 // Import variables first
-@import 'variables';
+@use 'variables' as *;
 
 // Import mixins
-@import 'mixins';
+@use 'mixins' as *;
 
 // Import base styles
-@import 'base';
+@use 'base';

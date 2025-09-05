@@ -221,3 +221,11 @@ npm run build
 ## Author
 
 Svitlana Kryukova - [GitHub](https://github.com/Sveta-Kryukova)
+
+## Live Demo
+
+🚀 [View Live Demo](https://YOUR_USERNAME.github.io/my-angular-app/)
+
+## Deployment
+
+This project is automatically deployed to GitHub Pages on every push to the main branch.

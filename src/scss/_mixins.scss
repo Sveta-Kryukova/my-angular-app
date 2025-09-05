@@ -2,6 +2,8 @@
 // SCSS Mixins
 // ===========================================
 
+@import 'variables';
+
 // Breakpoint mixins
 @mixin mobile {
   @media (min-width: #{$breakpoint-mobile}) {
