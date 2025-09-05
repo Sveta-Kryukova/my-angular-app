@@ -212,20 +212,12 @@ The project follows Angular best practices:
 
 ## Deployment
 
-### Production Build
+### Manual Deployment
 
 ```bash
-npm run build
+npm run deploy
 ```
 
-## Author
+### Automatic Deployment
 
-Svitlana Kryukova - [GitHub](https://github.com/Sveta-Kryukova)
-
-## Live Demo
-
-🚀 [View Live Demo](https://YOUR_USERNAME.github.io/my-angular-app/)
-
-## Deployment
-
-This project is automatically deployed to GitHub Pages on every push to the main branch.
+The project is set up for automatic deployment via GitHub Actions on every push to the main branch.
