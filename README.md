@@ -27,9 +27,7 @@ A modern Angular application for browsing spaceflight news with search functiona
 
 ## Live Demo
 
-[View Live Demo on GitHub Pages](https://sveta-kryukova.github.io/my-angular-app/)
-
-[View Live Demo on Netlify](https://your-app-name.netlify.app/)
+[View Live Demo on Netlify](https://graceful-parfait-9a0b81.netlify.app/)
 
 ## Installation and Setup
 
@@ -69,7 +67,6 @@ The build artifacts will be stored in the `dist/` directory.
 | `npm start`             | Start development server on http://localhost:4200 |
 | `npm run build`         | Build project for production                      |
 | `npm run watch`         | Build in watch mode                               |
-| `npm test`              | Run unit tests                                    |
 | `npm run deploy`        | Deploy to GitHub Pages                            |
 | `npm run build:netlify` | Build for Netlify deployment                      |
 
@@ -200,14 +197,6 @@ To run the application in development mode with automatic reloading:
 npm run watch
 ```
 
-## Testing
-
-To run tests:
-
-```bash
-npm test
-```
-
 ## Code Quality
 
 The project follows Angular best practices:
@@ -263,4 +252,3 @@ The project includes a `netlify.toml` file with the following settings:
 ## Author
 
 Svitlana Kryukova - [GitHub](https://github.com/Sveta-Kryukova)
-
